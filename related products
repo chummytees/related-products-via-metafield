@@ -1,0 +1,26 @@
+   {% assign related_meta = false  %}
+          {% for field in product.metafields.related_seo %}
+          {% if field.first contains 'related' %}
+          {% assign related_meta = true  %}
+          {% break %}
+          {% endif %}
+          {% endfor %}
+
+          {% if related_meta %}
+          <div class="recomatic-related-products-wrap desktop-12 tablet-6 mobile-3" style="padding-top: 20px;">
+            <h2 style="text-align:center">People also bought:</h2>
+            <div class="meta-related-products">
+              <div class="mr_products_in">
+                {% for field in product.metafields.related_seo %}
+                {% if field.first contains 'related' %}
+                {% assign hand = field.last %}
+                {% assign metapro = all_products[hand] %}
+                {% render 'meta-related-item' mproduct: metapro %}
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% else %}
+          
+          {% endif %}
